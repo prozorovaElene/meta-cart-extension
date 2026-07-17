@@ -1,0 +1,16 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.local
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# packaged extension builds
+*.zip
+*.crx
+*.pem

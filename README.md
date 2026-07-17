@@ -97,6 +97,11 @@ Content-Type: application/json
 - Token refresh isn't implemented — if your tokens expire, either issue
   long-lived ones for now or add a refresh-token flow later.
 
+## Contributing
+
+Two-person repo — see [CONTRIBUTING.md](CONTRIBUTING.md) for branch/PR
+conventions and [BACKLOG.md](BACKLOG.md) for the task list.
+
 ## File map
 
 - `manifest.json` — extension config (Manifest V3)
