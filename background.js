@@ -40,7 +40,8 @@ async function signIn() {
   return new Promise((resolve, reject) => {
     chrome.identity.launchWebAuthFlow({ url: authUrl, interactive: true }, (redirectedTo) => {
       if (chrome.runtime.lastError || !redirectedTo) {
-        reject(chrome.runtime.lastError || new Error("No redirect received"));
+        const message = chrome.runtime.lastError ? chrome.runtime.lastError.message : "No redirect received";
+        reject(new Error(message));
         return;
       }
       try {

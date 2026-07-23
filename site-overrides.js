@@ -9,7 +9,18 @@
 
 const UNIFIED_CART_SITE_OVERRIDES = {
   "amazon.": {
-    selectors: ["#add-to-cart-button", "#buy-now-button", "input[name='submit.add-to-cart']"]
+    selectors: ["#add-to-cart-button", "#buy-now-button", "input[name='submit.add-to-cart']"],
+    // The generic "*price*" heuristic in content.js/ProductInfoExtractor often grabs an
+    // unrelated widget (currency-conversion estimates, related-product carousels) on Amazon's
+    // busy pages, so we point directly at the real price element instead.
+    priceSelectors: [
+      "#corePriceDisplay_desktop_feature_div .a-price .a-offscreen",
+      "#corePrice_feature_div .a-price .a-offscreen",
+      "span.a-price .a-offscreen"
+    ],
+    // Amazon product pages have no og:image meta tag and no JSON-LD at all —
+    // the image only exists as this real <img> element.
+    imageSelectors: ["#landingImage", "#imgTagWrapperId img"]
   },
   "ebay.": {
     selectors: ["a.vi-cta-button", "[data-testid='atcBtn']", "#binBtn_btn"]
@@ -29,6 +40,11 @@ const UNIFIED_CART_SITE_OVERRIDES = {
   "shopify": {
     // covers many independent shopify storefronts loaded via CDN assets, not a perfect signal
     selectors: ["button[name='add']", "button.product-form__submit"]
+  },
+  "zoommer.": {
+    // Their "add to cart" control is a plain styled <div type="add">, not a real
+    // button/link — this exact attribute is used consistently across the whole site.
+    selectors: ["div[type='add']"]
   }
 };
 
